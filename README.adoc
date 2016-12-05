@@ -5,17 +5,10 @@ This is a simple repo with some clinical models which where used to demonstrate 
 
 == Content 
 
-* Archetypes 
-* Templates_OET
-* Templates 
-* Forms 
-* Docs
+Archetypes :: Archetypes downloaded from arketyper.no/ckm 
+Templates_OET:: The Template files used with Template Designer
+Templates :: The operational templates used to create the forms 
+Forms :: The form definitions 
+Docs :: Documentation of the demo (empty for now)
+Compositions :: Example Compositions created from the forms and templates
 
-== Use-case 
-
-== Blood pressure 
-
-[source]
-----
-MAP=[( 2 x diastolisk ) + systolisk ] /3 
-----
