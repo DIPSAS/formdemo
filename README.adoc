@@ -10,3 +10,12 @@ This is a simple repo with some clinical models which where used to demonstrate 
 * Templates 
 * Forms 
 * Docs
+
+== Use-case 
+
+== Blood pressure 
+
+[source]
+----
+MAP=[( 2 x diastolisk ) + systolisk ] /3 
+----
