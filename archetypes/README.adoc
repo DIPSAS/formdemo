@@ -1,0 +1,4 @@
+== Archetypes 
+
+* These are archetypes exported from the Clinical Knowledge Manager at arketyper.no
+* Export time: Mon Dec 05 20:46:53 CET 2016

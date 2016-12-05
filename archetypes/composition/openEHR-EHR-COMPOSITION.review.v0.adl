@@ -1,0 +1,59 @@
+﻿archetype (adl_version=1.4; uid=2ff60091-7ffa-470b-b8ab-edd24791c1a6)
+	openEHR-EHR-COMPOSITION.review.v0
+
+concept
+	[at0000]	-- Review
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2012-12-11">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the details of a formal review of a subject's clinical situation or any specific aspect of their clinical care.">
+			use = <"Use to record the details of a formal review of a subject's clinical situation or any specific aspect of their clinical care. For example: use to record Medicines reviews; or Case Coordinator reviews.">
+			keywords = <"review", "assessment", "medicine", "clinical", "case", "file">
+			misuse = <"">
+			copyright = <"© Nasjonal IKT HF">
+		>
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com">
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["revision"] = <"0.0.1-alpha">
+		["build_uid"] = <"042b6511-9512-458c-ba5d-f0411bbd069f">
+		["original_namespace"] = <"no.nasjonalikt">
+		["original_publisher"] = <"Nasjonal IKT">
+		["MD5-CAM-1.0.1"] = <"19519C127D8AC0E920F747B8CEDD63AB">
+		["custodian_namespace"] = <"no.nasjonalikt">
+		["custodian_organisation"] = <"Nasjonal IKT">
+	>
+
+definition
+	COMPOSITION[at0000] matches {	-- Review
+		category matches {
+			DV_CODED_TEXT matches {
+				defining_code matches {[openehr::433]}
+			}
+		}
+	}
+
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Review">
+					description = <"Composition for the recording of the details of a formal review of a subject's clinical situation or any specific aspect of their clinical care.">
+				>
+			>
+		>
+	>

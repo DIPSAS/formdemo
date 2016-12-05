@@ -1,0 +1,214 @@
+﻿archetype (adl_version=1.4; uid=6e3af9be-338c-472a-987c-25a4f6e46469)
+	openEHR-EHR-OBSERVATION.pews.v0
+
+concept
+	[at0000]	-- PEVS
+language
+	original_language = <[ISO_639-1::nb]>
+description
+	original_author = <
+		["name"] = <"Hallvard Lærum">
+		["organisation"] = <"Oslo Universitetssykehus HF">
+		["email"] = <"hallar@ous-hf.no">
+		["date"] = <"2016-02-16">
+	>
+	details = <
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"For å registrere PEVS, en sammensatt skåring basert på fysiologiske observasjoner for å overvåke pediatriske pasienters allmenntilstand og kardiopulmonale funksjon, og sikre at eventuelle forverringer blir fanget opp tidligst mulig.">
+			use = <"Brukes for å registrere PEVS, en sammensatt skåring basert på fysiologiske observasjoner for å overvåke pediatriske pasienters allmenntilstand og kardiopulmonale funksjon.">
+			keywords = <"varsling", "forverring", "triage">
+			misuse = <"Skal ikke benyttes hos individer som er 16 år eller eldre.
+
+Brukes ikke for registrering av hver enkelt fysiologisk parameter eller klinisk observasjon. Bruk spesifikke OBSERVATION-arketyper for dette formålet - OBSERVATION.pulse, OBSERVATION.respirations, OBSERVATION.avpu, CLUSTER.ambient_oxygen.">
+			copyright = <"© Nasjonal IKT HF">
+		>
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Vebjørn Arntzen, Oslo universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "Silje Ljosland Bakke, Nasjonal IKT HF, Norway (Nasjonal IKT redaktør)", "Hallvard Lærum, Oslo Universitetssykehus HF, Norway (Nasjonal IKT redaktør)", "John Tore Valand, Haukeland Universitetssjukehus, Norway (Nasjonal IKT redaktør)">
+	other_details = <
+		["current_contact"] = <"Hallvard Lærum, Oslo Universitetssykehus HF, hallar@ous-hf.no">
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["revision"] = <"0.0.1-alpha">
+		["references"] = <"Solevåg AL, Eggen EH, Døllner H. Pediatrisk tidlig varslingsskår og triage. 2014, Norsk barnelegeforening/Helsebiblioteket [Internet]. http://www.helsebiblioteket.no/retningslinjer/akuttveileder-i-pediatri/akutte-prosedyrer/pediatrisk-tidlig-varslingsskar-og-triage">
+		["build_uid"] = <"519323d9-25b5-40be-8e62-05804430e40e">
+		["original_publisher"] = <"Nasjonal IKT">
+		["original_namespace"] = <"no.nasjonalikt">
+		["MD5-CAM-1.0.1"] = <"767F941EDD9910A41FDBDC38996562F6">
+		["custodian_namespace"] = <"no.nasjonalikt">
+		["custodian_organisation"] = <"Nasjonal IKT">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- PEVS
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Uspesifisert hendelse
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Respirasjon
+										value matches {
+											0|[local::at0005], 	-- Normal respirasjonsfrekvens OG ingen inndragninger OG normal SpO₂ uten ekstra O₂
+											1|[local::at0006], 	-- Respirasjonsfrekvens ≥10 over normal for alderen ELLER Inndragninger ELLER Behov for ekstra O₂
+											2|[local::at0007], 	-- Respirasjonsfrekvens ≥20 over normal for alderen ELLER Jugulære inndragninger ELLER >40 % O₂ (CPAP/BiPAP) ELLER ≥5 l/min O₂ (maske)
+											3|[local::at0008]  	-- Respirasjonsfrekvens ≥30 over normal for alderen ELLER ≤5 under normal for alderen med inndragninger eller stønning ELLER > 50 % O₂ (CPAP/BIPAP) ELLER ≥ 8l/min O₂ (maske)
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Sirkulasjon
+										value matches {
+											0|[local::at0010], 	-- Normal/upåfallende ELLER Kapillærfylling 1-2 sekunder
+											1|[local::at0011], 	-- Blek ELLER Kapillærfylling 3 sekunder
+											2|[local::at0012], 	-- Grå/cyanotisk ELLER Takykardi ≥20 over normal puls for alderen ELLER Kapillærfylling 4 sekunder
+											3|[local::at0013]  	-- Grå/cyanotisk OG marmorert ELLER Takykardi ≥30 over normal puls for alderen ELLER Bradykardi ≤5 under normal puls for alderen ELLER Kapillærfylling ≥5 sekunder
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {	-- Adferd
+										value matches {
+											0|[local::at0015], 	-- Alert
+											1|[local::at0016], 	-- Voice
+											2|[local::at0017], 	-- Pain
+											3|[local::at0018]  	-- Unresponsive
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {	-- CPAP/inhalasjon?
+										value matches {
+											0|[local::at0022], 	-- Nei
+											2|[local::at0023]  	-- Ja
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {	-- Brekninger/oppkast postoperativt?
+										value matches {
+											0|[local::at0024], 	-- Nei
+											2|[local::at0025]  	-- Ja
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {	-- Totalscore
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..13|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+ontology
+	term_definitions = <
+		["nb"] = <
+			items = <
+				["at0000"] = <
+					text = <"PEVS">
+					description = <"Pediatrisk tidlig varslingsskår (PEVS), fra engelsk Pediatric Early Warning Score (PEWS).">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Uspesifisert hendelse">
+					description = <"Standard, uspesifisert tidspunkt eller tidsintervall som kan defineres mer eksplisitt i en template eller i en applikasjon.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Respirasjon">
+					description = <"Respirasjonsfrekvens, respirasjonsarbeid og behov for ekstra O₂.">
+				>
+				["at0005"] = <
+					text = <"Normal respirasjonsfrekvens OG ingen inndragninger OG normal SpO₂ uten ekstra O₂">
+					description = <"">
+				>
+				["at0006"] = <
+					text = <"Respirasjonsfrekvens ≥10 over normal for alderen ELLER Inndragninger ELLER Behov for ekstra O₂">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Respirasjonsfrekvens ≥20 over normal for alderen ELLER Jugulære inndragninger ELLER >40 % O₂ (CPAP/BiPAP) ELLER ≥5 l/min O₂ (maske)">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Respirasjonsfrekvens ≥30 over normal for alderen ELLER ≤5 under normal for alderen med inndragninger eller stønning ELLER > 50 % O₂ (CPAP/BIPAP) ELLER ≥ 8l/min O₂ (maske)">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Sirkulasjon">
+					description = <"Hudfarge, puls og kapillærfylling.">
+				>
+				["at0010"] = <
+					text = <"Normal/upåfallende ELLER Kapillærfylling 1-2 sekunder">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"Blek ELLER Kapillærfylling 3 sekunder">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Grå/cyanotisk ELLER Takykardi ≥20 over normal puls for alderen ELLER Kapillærfylling 4 sekunder">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Grå/cyanotisk OG marmorert ELLER Takykardi ≥30 over normal puls for alderen ELLER Bradykardi ≤5 under normal puls for alderen ELLER Kapillærfylling ≥5 sekunder">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Adferd">
+					description = <"AVPU omgjort til en ordinal 0-3.">
+				>
+				["at0015"] = <
+					text = <"Alert">
+					description = <"Våken med normal kontakt/interesse for omgivelsene.">
+				>
+				["at0016"] = <
+					text = <"Voice">
+					description = <"Slapp/somnolent. Reaksjon ved tiltale/berøring.">
+				>
+				["at0017"] = <
+					text = <"Pain">
+					description = <"Reaksjon kun ved smertestimuli.">
+				>
+				["at0018"] = <
+					text = <"Unresponsive">
+					description = <"Ingen reaksjon ved smertestimuli.">
+				>
+				["at0019"] = <
+					text = <"CPAP/inhalasjon?">
+					description = <"Om pasienten får CPAP/inhalasjon hvert 15. minutt, eller kontinuerlig inhalasjonsmedisin/puritanfukter.">
+				>
+				["at0020"] = <
+					text = <"Brekninger/oppkast postoperativt?">
+					description = <"Om pasienten har vedvarende brekninger eller oppkast postoperativt.">
+				>
+				["at0021"] = <
+					text = <"Totalscore">
+					description = <"Total sammenlagt score.">
+				>
+				["at0022"] = <
+					text = <"Nei">
+					description = <"Pasienten får ikke CPAP/inhalasjon hvert 15. minutt, eller kontinuerlig inhalasjonsmedisin/puritanfukter.">
+				>
+				["at0023"] = <
+					text = <"Ja">
+					description = <"Pasienten får CPAP/inhalasjon hvert 15. minutt, eller kontinuerlig inhalasjonsmedisin/puritanfukter.">
+				>
+				["at0024"] = <
+					text = <"Nei">
+					description = <"Pasienten har ikke vedvarende brekninger eller oppkast postoperativt.">
+				>
+				["at0025"] = <
+					text = <"Ja">
+					description = <"Pasienten har vedvarende brekninger eller oppkast postoperativt.">
+				>
+			>
+		>
+	>
