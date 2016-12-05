@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="openEHR/v1/Template">
+  <id>b8d28046-917b-4f08-b885-72cc9652d722</id>
+  <name>FormDemo</name>
+  <description>
+    <lifecycle_state>Initial</lifecycle_state>
+    <details>
+      <purpose>Benyttes for å demonstrere funksjonalitet i Arena Forms.</purpose>
+      <use>Not to be used in production. </use>
+      <misuse />
+    </details>
+    <other_details>
+      <item>
+        <key>MetaDataSet:Sample Set </key>
+        <value>Template metadata sample set </value>
+      </item>
+      <item>
+        <key>Acknowledgements</key>
+        <value />
+      </item>
+      <item>
+        <key>Business Process Level</key>
+        <value />
+      </item>
+      <item>
+        <key>Care setting</key>
+        <value />
+      </item>
+      <item>
+        <key>Client group</key>
+        <value />
+      </item>
+      <item>
+        <key>Clinical Record Element</key>
+        <value />
+      </item>
+      <item>
+        <key>Copyright</key>
+        <value />
+      </item>
+      <item>
+        <key>Issues</key>
+        <value />
+      </item>
+      <item>
+        <key>Owner</key>
+        <value />
+      </item>
+      <item>
+        <key>Sign off</key>
+        <value />
+      </item>
+      <item>
+        <key>Speciality</key>
+        <value />
+      </item>
+      <item>
+        <key>User roles</key>
+        <value />
+      </item>
+    </other_details>
+  </description>
+  <definition xsi:type="COMPOSITION" archetype_id="openEHR-EHR-COMPOSITION.encounter.v1" concept_name="Klinisk kontakt" name="Form Demonstrasjon">
+    <Content xsi:type="SECTION" archetype_id="openEHR-EHR-SECTION.soap.v0" concept_name="SOAP" path="/content">
+      <Item xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.story.v1" concept_name="Anamnese" max="1" path="/items[at0001]/items[at0006]" />
+      <Item xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.exam.v1" concept_name="Funn ved fysisk undersøkelse" path="/items[at0002]/items[at0008]">
+        <Rule path="/data[at0001]/events[at0002]" max="1" />
+        <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0006]" max="1" />
+      </Item>
+      <Item xsi:type="SECTION" archetype_id="openEHR-EHR-SECTION.vital_signs.v0" concept_name="Vital signs" path="/items[at0002]/items[at0009]">
+        <Item xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.blood_pressure.v1" concept_name="Blodtrykk" path="/items[at0001]">
+          <Rule path="/data[at0001]/events[at0006]" max="1" />
+          <Rule path="/data[at0001]/events[at0006]/data[at0003]/items[at1007]" max="0" />
+          <Rule path="/data[at0001]/events[at0006]/data[at0003]/items[at0033]" max="1" />
+          <Rule path="/data[at0001]/events[at0006]/state[at0007]/items[at0008]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at1003</excludedValues>
+              <excludedValues>local::at1014</excludedValues>
+            </constraint>
+          </Rule>
+          <Rule path="/data[at0001]/events[at0006]/state[at0007]/items[at1043]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at1045</excludedValues>
+            </constraint>
+          </Rule>
+          <Rule path="/data[at0001]/events[at1042]" max="0" />
+          <Rule path="/protocol[at0011]/items[at0013]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at0015</excludedValues>
+              <excludedValues>local::at1008</excludedValues>
+              <excludedValues>local::at1018</excludedValues>
+              <excludedValues>local::at1019</excludedValues>
+            </constraint>
+          </Rule>
+          <Rule path="/protocol[at0011]/items[at0014]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at0027</excludedValues>
+              <excludedValues>local::at0028</excludedValues>
+              <excludedValues>local::at1020</excludedValues>
+              <excludedValues>local::at1021</excludedValues>
+              <excludedValues>local::at1026</excludedValues>
+              <excludedValues>local::at1031</excludedValues>
+              <excludedValues>local::at1032</excludedValues>
+              <excludedValues>local::at1051</excludedValues>
+              <excludedValues>local::at1056</excludedValues>
+            </constraint>
+          </Rule>
+          <Rule path="/protocol[at0011]/items[at1035]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at1039</excludedValues>
+              <excludedValues>local::at1040</excludedValues>
+            </constraint>
+          </Rule>
+          <Rule path="/protocol[at0011]/items[at1038]" max="0" />
+          <Rule path="/protocol[at0011]/items[at1054]" max="0" />
+          <Rule path="/protocol[at0011]/items[at1055]" max="0" />
+          <Rule path="/protocol[at0011]/items[at1010]" max="0" />
+        </Item>
+        <Item xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.body_mass_index.v1" concept_name="Kroppsmasseindeks" path="/items[at0001]" />
+        <Item xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.body_temperature.v1" concept_name="Kroppstemperatur" path="/items[at0001]">
+          <Rule path="/data[at0002]/events[at0003]" max="1" />
+          <Rule path="/data[at0002]/events[at0003]/state[at0029]/items[at0030]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at0031</excludedValues>
+            </constraint>
+          </Rule>
+          <Rule path="/protocol[at0020]/items[at0021]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at0025</excludedValues>
+              <excludedValues>local::at0061</excludedValues>
+              <excludedValues>local::at0026</excludedValues>
+              <excludedValues>local::at0027</excludedValues>
+              <excludedValues>local::at0028</excludedValues>
+              <excludedValues>local::at0043</excludedValues>
+              <excludedValues>local::at0051</excludedValues>
+              <excludedValues>local::at0054</excludedValues>
+              <excludedValues>local::at0055</excludedValues>
+              <excludedValues>local::at0060</excludedValues>
+            </constraint>
+          </Rule>
+        </Item>
+        <Item xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.body_weight.v1" concept_name="Kroppsvekt" path="/items[at0001]">
+          <Rule path="/data[at0002]/events[at0003]" max="1" />
+          <Rule path="/data[at0002]/events[at0003]/data[at0001]/items[at0004]">
+            <constraint xsi:type="quantityConstraint">
+              <excludedUnits>g</excludedUnits>
+            </constraint>
+          </Rule>
+          <Rule path="/data[at0002]/events[at0003]/data[at0001]/items[at0038]" max="0" />
+          <Rule path="/data[at0002]/events[at0003]/state[at0008]/items[at0009]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at0013</excludedValues>
+              <excludedValues>local::at0017</excludedValues>
+            </constraint>
+          </Rule>
+          <Rule path="/data[at0002]/events[at0026]" max="0" />
+          <Rule path="/protocol[at0015]/items[at0037]" max="0" />
+          <Rule path="/protocol[at0015]/items[at0041]" max="0" />
+        </Item>
+        <Item xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.height.v1" concept_name="Høyde/Lengde" path="/items[at0001]">
+          <Rule path="/data[at0001]/events[at0002]" max="1" />
+          <Rule path="/data[at0001]/events[at0002]/data[at0003]/items[at0026]" max="0" />
+          <Rule path="/data[at0001]/events[at0002]/state[at0013]/items[at0014]">
+            <constraint xsi:type="textConstraint">
+              <excludedValues>local::at0020</excludedValues>
+            </constraint>
+          </Rule>
+          <Rule path="/data[at0001]/events[at0021]" max="0" />
+          <Rule path="/protocol[at0007]/items[at0025]" max="0" />
+          <Rule path="/protocol[at0007]/items[at0028]" max="0" />
+        </Item>
+      </Item>
+      <Item xsi:type="EVALUATION" archetype_id="openEHR-EHR-EVALUATION.clinical_synopsis.v1" concept_name="Klinisk sammendrag" max="1" path="/items[at0003]/items[at0010]" />
+      <Item xsi:type="INSTRUCTION" archetype_id="openEHR-EHR-INSTRUCTION.request.v1" concept_name="Helsetjenesterekvirering" path="/items[at0004]/items[at0012]">
+        <Rule path="/activities[at0001]" max="1" />
+        <Rule path="/activities[at0001]/description[at0009]/items[at0068]">
+          <constraint xsi:type="multipleConstraint">
+            <includedTypes>Coded_text</includedTypes>
+          </constraint>
+        </Rule>
+      </Item>
+      <Item xsi:type="INSTRUCTION" archetype_id="openEHR-EHR-INSTRUCTION.request-procedure.v1" concept_name="Prosedyrerekvirering" path="/items[at0004]/items[at0012]">
+        <Rule path="/activities[at0001]" max="1" />
+        <Rule path="/activities[at0001]/description[at0009]/items[at0068]">
+          <constraint xsi:type="multipleConstraint">
+            <includedTypes>Coded_text</includedTypes>
+          </constraint>
+        </Rule>
+        <Rule path="/protocol[at0008]/items[at0010.1]" max="0" />
+        <Rule path="/protocol[at0008]/items[at0011]" max="0" />
+        <Rule path="/protocol[at0008]/items[at0127.1]" max="0" />
+      </Item>
+    </Content>
+    <Context />
+  </definition>
+</template>
