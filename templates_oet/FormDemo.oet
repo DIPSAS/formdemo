@@ -169,6 +169,7 @@
           <Rule path="/protocol[at0007]/items[at0025]" max="0" />
           <Rule path="/protocol[at0007]/items[at0028]" max="0" />
         </Item>
+        <Item xsi:type="OBSERVATION" archetype_id="openEHR-EHR-OBSERVATION.body_surface_area.v0" concept_name="Body Surface Area" path="/items[at0001]" />
       </Item>
       <Item xsi:type="EVALUATION" archetype_id="openEHR-EHR-EVALUATION.clinical_synopsis.v1" concept_name="Klinisk sammendrag" max="1" path="/items[at0003]/items[at0010]" />
       <Item xsi:type="INSTRUCTION" archetype_id="openEHR-EHR-INSTRUCTION.request.v1" concept_name="Helsetjenesterekvirering" path="/items[at0004]/items[at0012]">
